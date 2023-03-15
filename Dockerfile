@@ -12,7 +12,7 @@ RUN mkdir -p /etc/secrets/
 #RUN ln -s /etc/secrets/default.conf /etc/nginx/http.d/default.conf
 #RUN ln -s /etc/secrets/entrypoint.sh /entrypoint.sh
 #RUN chmod +x /www/cgi-bin/search /opt/alist/alist /entrypoint.sh
-RUN chmod+x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 5678
 CMD ["/entrypoint.sh" ]
