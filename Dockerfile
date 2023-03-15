@@ -7,7 +7,7 @@ WORKDIR /opt/alist/
 
 RUN rm -rf /wwww/cgi-bin /etc/nginx/http.d/default. conf
 
-COPY /
+COPY ./ /
 RUN mkdir -p /etc/secrets/
 COPY .//entrypoint.sh /etc/secrets/entrypoint.sh
 COPY ./www/default.conf /etc/secrets/default.conf
