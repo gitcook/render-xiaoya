@@ -1,4 +1,4 @@
-ADD file:8202486f83c2c82076df2dd319507e087cea5a46fe1e30a280d100411f1c56eb in / 
+FROM 
 CMD ["/bin/sh"]
 
 RUN /bin/sh -c set -ex   && apk add --update --no-cache      sqlite unzip bash curl gzip ripgrep busybox-extras nginx tzdata   && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata   && rm -rf /tmp/* /var/cache/apk/*   && mv /usr/bin/rg /bin/grep # buildkit
