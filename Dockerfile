@@ -11,7 +11,7 @@ WORKDIR /opt/alist/
 #COPY ./www/default.conf /etc/secrets/default.conf
 #RUN ln -s /etc/secrets/default.conf /etc/nginx/http.d/default.conf
 #RUN ln -s /etc/secrets/entrypoint.sh /entrypoint.sh
-RUN chmod +x /www/cgi-bin/search /opt/alist/alist /entrypoint.sh
+#RUN chmod +x /www/cgi-bin/search /opt/alist/alist /entrypoint.sh
 
 EXPOSE 5280
 CMD ["/entrypoint.sh" ]
