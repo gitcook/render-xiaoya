@@ -7,7 +7,7 @@ VOLUME [/opt/alist/data/]
 COPY /app/bin/alist ./ # buildkit
 COPY data.zip /var/lib/data.zip # buildkit
 COPY docker-entrypoint.sh /entrypoint.sh # buildkit
-COPY updateall /updateall # buildkit
+#COPY updateall /updateall # buildkit
 RUN /bin/sh -c echo `date` > /docker.version # buildkit
 WORKDIR /opt/alist/
 VOLUME [/opt/alist/data/]
