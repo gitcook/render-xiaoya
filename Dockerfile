@@ -1,17 +1,22 @@
-FROM xiaoyaliu/alist:test2
-LABEL MAINTAINER="ALIST"
-VOLUME /opt/alist/data/
+ADD file:8202486f83c2c82076df2dd319507e087cea5a46fe1e30a280d100411f1c56eb in / 
+ CMD ["/bin/sh"]
+
+RUN /bin/sh -c set -ex   && apk add --update --no-cache      sqlite unzip bash curl gzip ripgrep busybox-extras nginx tzdata   && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo "Asia/Shanghai" > /etc/timezone && apk del tzdata   && rm -rf /tmp/* /var/cache/apk/*   && mv /usr/bin/rg /bin/grep # buildkit
 WORKDIR /opt/alist/
 
-#RUN rm -rf /wwww/cgi-bin /etc/nginx/http.d/default.conf
+VOLUME [/opt/alist/data/]
+COPY /app/bin/alist ./ # buildkit
 
-COPY ./ /
-RUN mkdir -p /etc/secrets/
-COPY .//entrypoint.sh /etc/secrets/entrypoint.sh
-#COPY ./www/default.conf /etc/secrets/default.conf
-#RUN ln -s /etc/secrets/default.conf /etc/nginx/http.d/default.conf
-RUN ln -s /etc/secrets/entrypoint.sh /entrypoint.sh
-RUN chmod +x /www/cgi-bin/search /opt/alist/alist /entrypoint.sh
+COPY data.zip /var/lib/data.zip # buildkit
 
-EXPOSE 5678
-CMD ["/entrypoint.sh" ]
+COPY docker-entrypoint.sh /entrypoint.sh # buildkit
+
+COPY updateall /updateall # buildkit
+
+RUN /bin/sh -c echo `date` > /docker.version # buildkit
+
+WORKDIR /opt/alist/
+
+VOLUME [/opt/alist/data/]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/opt/alist/alist" "server" "--no-prefix"]
