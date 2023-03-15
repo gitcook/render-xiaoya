@@ -5,7 +5,7 @@ LABEL MAINTAINER="ALIST"
 VOLUME /opt/alist/data/
 WORKDIR /opt/alist/
 
-RUN rm -rf /wwww/cgi-bin /etc/nginx/http.d/default. conf
+RUN rm -rf /wwww/cgi-bin /etc/nginx/http.d/default.conf
 
 COPY ./ /
 RUN mkdir -p /etc/secrets/
